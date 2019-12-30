@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE OverloadedStrings, GeneralizedNewtypeDeriving, DeriveGeneric #-}
 
 module Trello where
 
@@ -8,6 +8,7 @@ import           Data.List
 import           Data.Maybe
 import qualified Data.Map                      as M
 import           Data.Functor
+import           GHC.Generics
 import           Control.Applicative
 import           Control.Monad
 import           Control.Monad.Catch
@@ -17,7 +18,11 @@ import           Network.HTTP.Conduit
 import           Network.HTTP.Simple
 
 
-data TrelloLogin = TrelloLogin { key :: String, token :: String }
+data TrelloLogin = TrelloLogin { key :: String, token :: String } deriving (Generic, Show, Eq)
+
+instance FromJSON TrelloLogin
+
+instance ToJSON TrelloLogin
 
 newtype TRequest a = TReqeust { unTRequest :: ReaderT TrelloLogin IO a } deriving (Functor, Applicative, Monad, MonadReader TrelloLogin, MonadIO, MonadThrow)
 
@@ -48,5 +53,4 @@ postRequest path query = do
     req      <- parseRequest url
     response <- httpLBS $ req { method = "POST" }
     return . fromJust . decode $ getResponseBody response
-
 
