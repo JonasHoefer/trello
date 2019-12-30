@@ -17,7 +17,7 @@
 #
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
-resolver: lts-14.17
+resolver: lts-14.18
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -43,8 +43,9 @@ extra-deps:
 - http-conduit-2.3.7.3
 - aeson-1.4.6.0
 - bytestring-0.10.10.0
+- exceptions-0.10.3
 - binary-0.8.7.0@sha256:ae3e6cca723ac55c54bbb3fa771bcf18142bc727afd57818e66d6ee6c8044f12,7705
-- directory-1.3.4.0@sha256:500019f04494324d1df16cf83eefeb3f809b2b20b32a32ccd755ee0439c18bfd,2829
+- directory-1.3.5.0@sha256:a7d0f5e79a6bb31a75dfceb9656d2de119de9f91076ec18ad30e4496d0385cfa,2782
 - process-1.6.7.0@sha256:305bcf44c42a96425e77af1748183f505a701648f68cc299d5ad8ac1b866a6a1,2468
 - text-1.2.4.0@sha256:8c24450feb8e3bbb7ea3e17af24ef57e85db077c4bf53e5bcc345b283d1b1d5b,10081
 - unix-2.7.2.2@sha256:e69269a17b9fa26cb77f3f55e86c39d0a4940ccfa0c4bc20826919d2572076ad,3496
