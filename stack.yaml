@@ -41,9 +41,11 @@ packages:
 #
 extra-deps:
 - http-conduit-2.3.7.3
+- http-types-0.12.3
 - aeson-1.4.6.0
 - bytestring-0.10.10.0
 - exceptions-0.10.3
+- unordered-containers-0.2.10.0
 - binary-0.8.7.0@sha256:ae3e6cca723ac55c54bbb3fa771bcf18142bc727afd57818e66d6ee6c8044f12,7705
 - directory-1.3.5.0@sha256:a7d0f5e79a6bb31a75dfceb9656d2de119de9f91076ec18ad30e4496d0385cfa,2782
 - process-1.6.7.0@sha256:305bcf44c42a96425e77af1748183f505a701648f68cc299d5ad8ac1b866a6a1,2468

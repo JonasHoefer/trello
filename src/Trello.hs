@@ -9,6 +9,7 @@ import           Data.Maybe
 import qualified Data.Map                      as M
 import           Data.Functor
 import           GHC.Generics
+import           Network.HTTP.Types.Method
 import           Control.Applicative
 import           Control.Monad
 import           Control.Monad.Catch
@@ -47,10 +48,19 @@ getRequest path query = do
     dat <- simpleHttp url
     return . fromJust . decode $ dat
 
-postRequest :: FromJSON a => String -> M.Map String String -> TRequest a
-postRequest path query = do
+req :: FromJSON a => Method -> String -> M.Map String String -> TRequest a
+req method path query = do
     url      <- buildURL path query
     req      <- parseRequest url
-    response <- httpLBS $ req { method = "POST" }
+    response <- httpLBS $ req { method = method }
     return . fromJust . decode $ getResponseBody response
+
+postRequest :: FromJSON a => String -> M.Map String String -> TRequest a
+postRequest = req "POST"
+
+deleteRequest :: FromJSON a => String -> M.Map String String -> TRequest a
+deleteRequest = req "DELETE"
+
+putRequest :: FromJSON a => String -> M.Map String String -> TRequest a
+putRequest = req "PUT"
 

@@ -22,11 +22,14 @@ description:         Please see the README on GitHub at <https://github.com/gith
 dependencies:
 - base >= 4.7 && < 5
 - http-conduit
+- http-types
 - aeson
 - bytestring
+- text
 - mtl
 - containers
 - exceptions
+- unordered-containers
 
 library:
   source-dirs: src
