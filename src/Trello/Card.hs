@@ -1,4 +1,4 @@
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric, TupleSections #-}
 
 module Trello.Card where
 
@@ -31,3 +31,14 @@ delete c = deleteRequest ("/1/cards/" ++ id c) M.empty
 
 put :: Card -> TRequest ()
 put c = putRequest ("/1/cards/" ++ id c) $ toQuery . fromJust . decode . encode $ c
+
+label :: Card -> String -> Maybe String -> TRequest ()
+label c color name = postRequest ("/1/cards/" ++ id c ++ "/labels") $ M.fromList $ ins (("name", ) <$> name) [("color", color)]
+    where ins mx xs = maybe xs (:xs) mx
+
+markAssociatedNotificationsRead :: Card -> TRequest ()
+markAssociatedNotificationsRead c = postRequest ("/cards/" ++ id c ++ "/markAssociatedNotificationsRead") M.empty
+
+
+
+

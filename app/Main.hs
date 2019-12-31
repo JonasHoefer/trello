@@ -22,7 +22,8 @@ main = do
     runTRequest login $ do
         board <- B.all <&> head >>= L.all <&> head
         newCard <- C.post board
-        liftIO . print $ newCard
-        C.put $ newCard { C.name = "Card from Haskell",  C.desc = "This Card was created using the Haskell bindings of the `Trello.com` Rest API" }
         A.post newCard "https://github.com/JonasHoefer/trello"
+        img <- A.post newCard "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Haskell-Logo.svg/602px-Haskell-Logo.svg.png"
+        C.put $ newCard { C.name = "Card from Haskell",  C.desc = "This Card was created using the Haskell bindings for the `Trello.com` Rest API", C.idAttachmentCover = Just . A.id $ img }
+        C.label newCard "purple" (Just "Haskell")
         return ()

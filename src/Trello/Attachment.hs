@@ -14,7 +14,7 @@ import           Trello.Util
 import qualified Trello.Card                   as C
 
 
-data Attachment = Attachment { id :: String, bytes :: Integer, name :: String } deriving (Generic, Show)
+data Attachment = Attachment { id :: String, bytes :: Maybe Integer, name :: Maybe String } deriving (Generic, Show)
 
 instance FromJSON Attachment
 
