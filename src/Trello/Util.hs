@@ -16,7 +16,9 @@ toQuery (Object o) =
     M.unions
         $   (\(k, v) -> M.mapKeysMonotonic (unpack k ++) (toQuery v))
         <$> HM.toList o
-toQuery v = M.singleton "" $ case v of
+toQuery (Array _) = M.empty  -- TODO: finish
+toQuery Null      = M.empty  -- TODO: finish
+toQuery v         = M.singleton "" $ case v of
     String t -> unpack t
     Number n -> show n
     Bool   b -> toLower <$> show b

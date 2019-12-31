@@ -27,6 +27,7 @@ dependencies:
 - bytestring
 - text
 - mtl
+- transformers
 - containers
 - exceptions
 - unordered-containers
